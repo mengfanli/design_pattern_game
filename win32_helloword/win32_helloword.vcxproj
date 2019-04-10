@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -22,32 +22,33 @@
     <ProjectGuid>{8DA40F26-DDD3-4FB8-858E-32ED6E9ACC1C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>win32_helloword</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <ProjectName>design_pattern_game</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -145,22 +146,50 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="adapter.h" />
+    <ClInclude Include="care_taker.h" />
     <ClInclude Include="concrete_character.h" />
     <ClInclude Include="concrete_decorator.h" />
+    <ClInclude Include="concrete_equip_factory.h" />
+    <ClInclude Include="concrete_flyweight.h" />
+    <ClInclude Include="concrete_product_equip.h" />
+    <ClInclude Include="concrete_strategy.h" />
+    <ClInclude Include="context_strategy.h" />
     <ClInclude Include="decorator.h" />
+    <ClInclude Include="equip_factory.h" />
+    <ClInclude Include="flyweight.h" />
+    <ClInclude Include="flyweight_factory.h" />
+    <ClInclude Include="Istrategy.h" />
+    <ClInclude Include="originator.h" />
+    <ClInclude Include="product_equipment.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="singleton.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="warrior.h" />
     <ClInclude Include="win32_helloword.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="care_taker.cpp" />
+    <ClCompile Include="concrete_character.cpp" />
+    <ClCompile Include="concrete_equip_factory.cpp" />
+    <ClCompile Include="concrete_flyweight.cpp" />
+    <ClCompile Include="concrete_product_equip.cpp" />
+    <ClCompile Include="concrete_strategy.cpp" />
+    <ClCompile Include="context_strategy.cpp" />
+    <ClCompile Include="equip_factory.cpp" />
+    <ClCompile Include="flyweight.cpp" />
+    <ClCompile Include="flyweight_factory.cpp" />
+    <ClCompile Include="originator.cpp" />
+    <ClCompile Include="product_equipment.cpp" />
+    <ClCompile Include="singleton.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="warrior.cpp" />
     <ClCompile Include="win32_helloword.cpp" />
   </ItemGroup>
   <ItemGroup>

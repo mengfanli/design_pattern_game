@@ -18,5 +18,4 @@ public:
 		DEF += DEF_gain;
 		HP  += HP_gain;
 	}
-	
 };

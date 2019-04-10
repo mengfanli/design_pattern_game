@@ -42,12 +42,96 @@
     <ClInclude Include="concrete_decorator.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="singleton.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="flyweight.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="concrete_flyweight.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="flyweight_factory.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="product_equipment.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="concrete_product_equip.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="concrete_equip_factory.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="equip_factory.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="adapter.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Istrategy.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="concrete_strategy.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="context_strategy.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="originator.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="care_taker.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="win32_helloword.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="product_equipment.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="singleton.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="warrior.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="concrete_character.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="concrete_product_equip.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="concrete_equip_factory.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="equip_factory.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="concrete_flyweight.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="flyweight_factory.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="flyweight.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="concrete_strategy.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="context_strategy.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="originator.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="care_taker.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
