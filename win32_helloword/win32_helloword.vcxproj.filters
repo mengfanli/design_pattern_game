@@ -84,6 +84,18 @@
     <ClInclude Include="care_taker.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="subject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="concrete_subject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="observer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="concrete_observer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -132,6 +144,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="care_taker.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="concrete_observer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="concrete_subject.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -11,4 +11,6 @@
 #include "context_strategy.h"
 #include "concrete_strategy.h"
 #include "care_taker.h"
+#include "concrete_observer.h"
+#include "concrete_subject.h"
 //#include "adapter.h"

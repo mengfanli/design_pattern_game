@@ -9,7 +9,7 @@
 //enum attribute_type {hp,att,def};
 extern enum attribute_type{ hp, att, def, coins, exper, NUM_ATTRI };
 extern enum character_type {soldier,assassin,tank};
-extern HWND hwnd;
+extern HWND hwnd_main;
 // µ¥Àý
 class Singleton_player  
 {

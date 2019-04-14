@@ -1,6 +1,26 @@
 #include "stdafx.h"
 #include "warrior.h"
 extern enum attribute_type{ hp, att, def, coins, exper, NUM_ATTRI };
+Iwarrior::Iwarrior(const Iwarrior& obj) {
+	NAME = obj.NAME;
+	HP = obj.HP;
+	ATT = obj.ATT;
+	DEF = obj.DEF;
+	COINS = obj.COINS;
+	EXPERIENCE = obj.EXPERIENCE;
+}
+Iwarrior & Iwarrior::operator =(const Iwarrior & war) {
+	if (this != &war) {
+		this->ATT = war.ATT;
+		this->COINS = war.COINS;
+		this->DEF = war.DEF;
+		this->EXPERIENCE = war.EXPERIENCE;
+		this->HP = war.HP;
+		this->NAME = war.NAME;
+	}
+	return *this;
+}
+
 int Iwarrior::get_info(int attribute) {
 	switch (attribute) {
 	case hp:

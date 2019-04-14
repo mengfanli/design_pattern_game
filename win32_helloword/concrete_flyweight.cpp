@@ -31,6 +31,6 @@ void Senior::mission(){
 	{
 		//确认打怪 信息更新
 		Singleton_player::GetInstance().under_affect(hp, m_att_v);
-		InvalidateRect(hwnd, NULL, TRUE);//发出重绘消息
+		InvalidateRect(hwnd_main, NULL, TRUE);//发出重绘消息
 	}
 }

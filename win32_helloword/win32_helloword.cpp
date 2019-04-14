@@ -25,6 +25,7 @@
 #define IDB_BKU1    3020
 #define IDB_BKU2    3021
 #define IDB_BKU3    3022
+#define IDB_BKUS    3023
 
 #ifndef SAFE_DELETE
 #define SAFE_DELETE(p) { if(p){delete(p); (p)=NULL;} }
@@ -41,8 +42,8 @@ TCHAR szTitle[MAX_LOADSTRING] = { L"主窗口" };					// The title bar text
 TCHAR szWindowClass[MAX_LOADSTRING];			// the main window class name
 TCHAR szTitle2[MAX_LOADSTRING] = { L"第二窗口" };
 TCHAR szWindowClass2[MAX_LOADSTRING] = { L"Submarine" };    // 第二个窗口类的类名
-HWND hWnd, hWnd2;
-HWND hwnd;
+HWND hwnd_bk;
+HWND hwnd_main;
 WCHAR infor[10][64];
 //Istrategy *strategy1 = new ConcreteStrategy1();
 //Istrategy *strategy2 = new ConcreteStrategy2();
@@ -211,7 +212,7 @@ BOOL InitInstance5(HINSTANCE hInstance, int nCmdShow)
 	{
 		return FALSE;
 	}
-
+	hwnd_bk = hWnd;
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
 	return TRUE;
@@ -281,7 +282,7 @@ BOOL InitInstance1(HINSTANCE hInstance, int nCmdShow)
 	{
 		return FALSE;
 	}
-	hwnd = hWnd;
+	hwnd_main = hWnd;
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
 	return TRUE;
@@ -521,7 +522,7 @@ LRESULT CALLBACK WndProc3(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 			Iequipment *peq1 = pequipfatcory1->Createequip();
 			if (peq1 != NULL) {
-				MessageBox(hWnd, L"您购买了装备1", L"提示", MB_OK | MB_ICONINFORMATION);
+				MessageBox(hWnd, L"您购买了铁剑+10攻击", L"提示", MB_OK | MB_ICONINFORMATION);
 				Singleton_player::GetInstance().doSomething(peq1);
 			}
 			else
@@ -533,7 +534,7 @@ LRESULT CALLBACK WndProc3(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 			Iequipment *peq2 = pequipfatcory2->Createequip();
 			if (peq2 != NULL) {
-				MessageBox(hWnd, L"您购买了装备3", L"提示", MB_OK | MB_ICONINFORMATION);
+				MessageBox(hWnd, L"您购买了布甲+10防御", L"提示", MB_OK | MB_ICONINFORMATION);
 				Singleton_player::GetInstance().doSomething(peq2);
 			}
 			else
@@ -545,7 +546,7 @@ LRESULT CALLBACK WndProc3(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 			Iequipment *peq3 = pequipfatcory3->Createequip();
 			if (peq3 != NULL) {
-				MessageBox(hWnd, L"您购买了装备3", L"提示", MB_OK | MB_ICONINFORMATION);
+				MessageBox(hWnd, L"您购买了红宝石+50生命", L"提示", MB_OK | MB_ICONINFORMATION);
 				Singleton_player::GetInstance().doSomething(peq3);
 			}
 			else
@@ -657,10 +658,15 @@ LRESULT CALLBACK WndProc4(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 }
 LRESULT CALLBACK WndProc5(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+	hwnd_bk = hWnd;
 	int wmId, wmEvent;
 	PAINTSTRUCT ps;
 	HDC hdc;
-	static Memento_Manager *memento_manager;
+	static Concrete_Observer_button* bkbutton1 = new Concrete_Observer_button(1);
+	static Concrete_Observer_button* bkbutton2 = new Concrete_Observer_button(2);
+	static Concrete_Observer_button* bkbutton3 = new Concrete_Observer_button(3);
+	static Observer* button_list[3] = { bkbutton1,bkbutton2,bkbutton3 };
+	static Concrete_Subject* buttonSubject = new Concrete_Subject();
 	switch (message)
 	{
 	case WM_COMMAND:
@@ -678,24 +684,41 @@ LRESULT CALLBACK WndProc5(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				DestroyWindow(hWnd);
 			}
 			break;
+		case IDB_BKUS:
+		{
+			Memento_Manager::get_instance()->backup();
+			static int bkn = 0;
+			if (bkn) {
+				buttonSubject->detach();
+			}
+			buttonSubject->attach(button_list[(bkn++)%3]);
+			buttonSubject->notify();
+			MessageBox(hWnd, L"您完成了备份", L"提示", MB_OK | MB_ICONINFORMATION);
+			//InvalidateRect(hWnd, NULL, TRUE);//发出重绘消息
+			DestroyWindow(hWnd);
+		}
+			break;
 		case IDB_BKU1:
 		{
-			Singleton_player::GetInstance().set_context(1);
-				MessageBox(hWnd, L"您选择了备份1", L"提示", MB_OK | MB_ICONINFORMATION);
-				DestroyWindow(hWnd);
+			Memento_Manager::get_instance()->undo_jump(1);
+			MessageBox(hWnd, L"您选择了备份1", L"提示", MB_OK | MB_ICONINFORMATION);
+			InvalidateRect(hwnd_main, NULL, TRUE);//发出重绘消息
+			DestroyWindow(hWnd);
 		}
 			break;
 		case IDB_BKU2:
 		{
-			Singleton_player::GetInstance().set_context(2);
+			Memento_Manager::get_instance()->undo_jump(2);
 			MessageBox(hWnd, L"您选择了备份2", L"提示", MB_OK | MB_ICONINFORMATION);
+			InvalidateRect(hwnd_main, NULL, TRUE);//发出重绘消息
 				DestroyWindow(hWnd);
 		}
 			break;
 		case IDB_BKU3:
 		{
-			Singleton_player::GetInstance().set_context(3);
+			Memento_Manager::get_instance()->undo_jump(3);
 			MessageBox(hWnd, L"您选择了备份3", L"提示", MB_OK | MB_ICONINFORMATION);
+			InvalidateRect(hwnd_main, NULL, TRUE);//发出重绘消息
 				DestroyWindow(hWnd);
 		}
 			break;
@@ -705,13 +728,17 @@ LRESULT CALLBACK WndProc5(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		break;
 	case WM_CREATE:
 	{
-		//创建两个按钮  
-		CreateWindow(L"Button", L"还原点一", WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
-			35, 10, 120, 60, hWnd, (HMENU)IDB_STC1, hInst, NULL);
-		CreateWindow(L"Button", L"还原点二", WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
-			35, 80, 120, 60, hWnd, (HMENU)IDB_STC2, hInst, NULL);
-		CreateWindow(L"Button", L"还原点三", WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
-			35, 150, 120, 60, hWnd, (HMENU)IDB_STC3, hInst, NULL);
+		//创建四个按钮  
+		bkbutton1->Show_button();
+		bkbutton2->Show_button();
+		bkbutton3->Show_button();
+
+		CreateWindow(L"Button", L"存档", WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
+			235, 10, 120, 60, hWnd, (HMENU)IDB_BKUS, hInst, NULL);
+		//CreateWindow(L"Button", L"还原点二", WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
+		//	35, 80, 120, 60, hWnd, (HMENU)IDB_BKU2, hInst, NULL);
+		//CreateWindow(L"Button", L"还原点三", WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
+		//	35, 150, 120, 60, hWnd, (HMENU)IDB_BKU3, hInst, NULL);
 		//CreateWindow(L"Button", L"商店", WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
 		//	35, 220, 120, 60, hWnd, (HMENU)IDB_FOUR, hInst, NULL);
 	}

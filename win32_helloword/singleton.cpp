@@ -19,7 +19,7 @@ int Singleton_player::get_info(int attribute) {
 	}
 void Singleton_player::under_affect(int attribute,int value) {
 	p->update_info(attribute, value);
-	InvalidateRect(hwnd, NULL, TRUE);//发出重绘消息
+	InvalidateRect(hwnd_main, NULL, TRUE);//发出重绘消息
 	};
 void Singleton_player::init_character(int character) {
 		switch (character)
@@ -42,7 +42,7 @@ void Singleton_player::init_character(int character) {
 
 }
 void Singleton_player::init_character(Iwarrior *wa) {
-	p = wa;
+	*p = *wa;
 }
 Iwarrior * Singleton_player::get_character() {
 	return p;
